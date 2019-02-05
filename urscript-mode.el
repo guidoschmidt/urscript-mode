@@ -33,7 +33,11 @@
 (defconst urscript--regexp-constants
   (regexp-opt urscript--constants 'symbols))
 
-
+(defconst urscript--regexp-types
+  (concat "-?[0-9]+"              ;; int
+          "\\|" "-?[0-9]+.[0-9]+" ;; float
+          "\\|" "none")            ;; none
+  "URScript builtin types.")
 
 (defconst urscript--keywords
   '("def" "sec" "end"
@@ -49,19 +53,15 @@
   (regexp-opt urscript--keywords 'symbols)
   "Regular expression representing reserved keywords.")
 
-
-
 (defconst urscript--regexp-operators
   (concat "\\(" "`[^`]+`"
           "\\|" "\\B\\\\"
-          "\\|" "[-+*/\\\\|<>=:!@#$%^&,.]+"
+          "\\|" "[-+*/\\\\|<>!$%&,]+"
           "\\)")
   "A regular expression representing operators inside expressions.")
 
-
-
 (defconst urscript--builtin-funtions
-  '("rpc_factory" "assert" "popup" "sync" "sleep" "p"
+  '("rpc_factory" "assert" "popup" "sync" "sleep"
     "conveyor_puse_decode" "encode_enable_pulse_decode"
     "encoder_enable_set_tick_count" "encoder_get_tick_count"
     "encoder_set_tick_count" "end_force_mode" "end_freedrive_mode"
@@ -127,19 +127,17 @@
 (defconst urscript--regexp-builtin-functions
   (regexp-opt urscript--builtin-funtions 'symbols))
 
-
-
-(defconst urscript--regexp-type
-  "\\<[A-Za-z][0-9A-Za-z_']* ="
+(defconst urscript--regexp-assignment
+  "[A-Za-z]+\\(\_[A-Za-z]+\\)*\\( \\)*="
   "A regular expression representing types.")
 
-
 (defconst urscript--highlighting
-      `((,urscript--regexp-keywords          . font-lock-function-name-face)
-        (,urscript--regexp-builtin-functions . font-lock-builtin-face)
-        (,urscript--regexp-constants         . font-lock-constant-face)
-        (,urscript--regexp-type              . font-lock-variable-name-face)
-        (,urscript--regexp-operators         . font-lock-variable-name-face)))
+  `((,urscript--regexp-keywords          . font-lock-function-name-face)
+    (,urscript--regexp-builtin-functions . font-lock-builtin-face)
+    (,urscript--regexp-constants         . font-lock-constant-face)
+    (,urscript--regexp-types             . font-lock-constant-face)
+    (,urscript--regexp-operators         . font-lock-keyword-face)
+    (,urscript--regexp-assignment        . font-lock-variable-name-face)))
 
 (define-derived-mode urscript-mode python-mode "URScript"
   "Major mode for editing URScript source code."
