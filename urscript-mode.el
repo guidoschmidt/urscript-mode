@@ -1,30 +1,23 @@
 ;;; urscript-mode.el --- major mode for editing URScript. -*- coding: utf-8; lexical-binding: t; -*-
 
-;; TODO:
-;; Copyright © 2019, by you
+;; Copyright © 2019, Guido Schmidt 
 
 ;; Author: your name ( your email )
 ;; Version: 2.0.13
 ;; Created: 26 Jun 2015
 ;; Keywords: languages
-;; Homepage: http://ergoemacs.org/emacs/elisp_syntax_coloring.html
-
-;; This file is not part of GNU Emacs.
-
-;;; License:
-
-;; You can redistribute this program and/or modify it under the terms of the GNU General Public License version 2.
+;; Homepage: https://github.com/guidoschmidt/urscript-mode
+;; Version: 0.0.1
+;; Package-Requires: ((emacs "24.4"))
 
 ;;; Commentary:
 
-;; short description here
-
-;; full doc on how to use here
+;; Simple major mode for URScript scripts.
+;; For details about the scripting language, check out:
+;; - https://s3-eu-west-1.amazonaws.com/ur-support-site/46196/scriptManual.pdf
+;; - https://universal-robots.com
 
 ;;; Code:
-
-;; create the list for font-lock.
-;; each category of keyword is given a particular face
 
 (defconst urscript--constants
   '("True" "False")
@@ -36,7 +29,7 @@
 (defconst urscript--regexp-types
   (concat "-?[0-9]+"              ;; int
           "\\|" "-?[0-9]+.[0-9]+" ;; float
-          "\\|" "none")            ;; none
+          "\\|" "none")           ;; none
   "URScript builtin types.")
 
 (defconst urscript--keywords
