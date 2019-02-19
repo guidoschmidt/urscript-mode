@@ -4,7 +4,7 @@
 ;; Created: 26 Jun 2015
 ;; Keywords: languages
 ;; Homepage: https://github.com/guidoschmidt/urscript-mode
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Package-Requires: ((emacs "24.4"))
 
 ;; MIT License
